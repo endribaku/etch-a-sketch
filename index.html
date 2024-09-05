@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+
+<body>
+    <div class="grid-content"></div>
+        
+</body>
+
+<script>
+    const content = document.querySelector(".grid-content");
+    let opacity = 0;
+    // ask number of squares
+    const button = document.createElement("button");
+    button.textContent = "Number of Squares";
+    document.querySelector("body").appendChild(button);
+    button.addEventListener("click", () => {
+        const card = document.querySelectorAll(".grid-card")
+        card.forEach( (card) => {
+            card.remove();
+        })
+       let num = prompt("Number of Squares");
+       if(num <= 100) {
+        for(let i = 0; i < num; i++) {
+        
+            for(let j = 0; j < num; j++) {
+                let card = document.createElement("div");
+                card.classList.add("grid-card");
+                var height = 480  / (num);
+                card.style.height = `${height}px`;
+                card.style.width = `${height}px`;
+                content.appendChild(card);
+            }
+    }
+
+    
+        const cards = document.querySelectorAll(".grid-card");
+        cards.forEach( (card) => {
+            card.addEventListener("mouseover", () => {
+                var R = Math.floor(Math.random() * 256);
+                var G = Math.floor(Math.random() * 256);
+                var B = Math.floor(Math.random() * 256);
+                var randomcolor = "rgb(" + R + "," + G + "," + B + ")"; 
+                card.style.backgroundColor = randomcolor;
+                opacity += 0.1;
+                card.style.opacity = `${opacity}`;
+                
+            })
+        })
+        } else {
+            alert("Number higher than 100");
+        }
+        })
+    
+    
+    
+    
+</script>
+
+</html>
